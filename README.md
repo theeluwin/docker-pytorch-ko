@@ -1,22 +1,23 @@
 # docker-pytorch-ko
+
 Docker image of latest PyTorch-CUDA for Koreans...
 
 대충 한국어 안깨지고 시간 잘 맞는 GPU pytorch 런타임 도커 예제..
 
 ```bash
-$ docker pull theeluwin/pytorch-ko:latest
+docker pull theeluwin/pytorch-ko:latest
 ```
 
 ## Build
 
 ```bash
-$ docker build -t theeluwin/pytorch-ko -f Dockerfile .
+docker build -t theeluwin/pytorch-ko -f Dockerfile .
 ```
 
 or,
 
 ```bash
-$ ./build.sh
+./build.sh
 ```
 
 ## Run
@@ -26,7 +27,7 @@ $ ./build.sh
 예시로는 `entry.py`와 `run.sh` 참고.
 
 ```bash
-$ docker run --rm -it --init --gpus=all --volume="$HOME/.cache/torch:/root/.cache/torch" --volume="$PWD:/workspace" theeluwin/pytorch-ko python entry.py
+docker run --rm -it --init --gpus=all --volume="$HOME/.cache/torch:/root/.cache/torch" --volume="$PWD:/workspace" theeluwin/pytorch-ko python entry.py
 ```
 
 이거 결과가 `True`면 도커 런타임에서 PyTorch로 GPU 써서 돌릴 수 있다는 뜻.
@@ -38,5 +39,5 @@ $ docker run --rm -it --init --gpus=all --volume="$HOME/.cache/torch:/root/.cach
 이미지 캐시 마운트 `RUN --mount=type=cache,target=/root/.cache/pip` 같은거 사용하려면 experiment buildkit이 필요함. `gnome-keyring` 패키지를 설치하고, 빌드 할때 플래그를 줘서 빌드:
 
 ```bash
-$ DOCKER_BUILDKIT=1 docker build -t my/docker-image -f MyDockerfile .
+DOCKER_BUILDKIT=1 docker build -t my/docker-image -f MyDockerfile .
 ```

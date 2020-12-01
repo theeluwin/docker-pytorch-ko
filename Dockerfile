@@ -6,8 +6,12 @@ FROM pytorch/pytorch:latest
 LABEL maintainer="Jamie Seol <theeluwin@gmail.com>"
 
 # apt source
-RUN sed -i 's/archive.ubuntu.com/mirror.kakao.com/g' /etc/apt/sources.list \
-    && rm -rfv /var/lib/apt/lists/* && sed -i 's/# \(.*multiverse$\)/\1/g' /etc/apt/sources.list && apt-get update && apt-get -y upgrade
+RUN sed -i 's/archive.ubuntu.com/mirror.kakao.com/g' /etc/apt/sources.list && \
+    sed -i 's/security.ubuntu.com/mirror.kakao.com/g' /etc/apt/sources.list && \
+    rm -rfv /var/lib/apt/lists/* && \
+    sed -i 's/# \(.*multiverse$\)/\1/g' /etc/apt/sources.list && \
+    apt-get update && \
+    apt-get -y upgrade
 
 # apt
 ENV TZ=Asia/Seoul
@@ -28,8 +32,8 @@ ENV PYTHONUNBUFFERED=1
 RUN ln -sf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 # cache
-RUN mkdir -p /root/.cache/torch/checkpoints/
-RUN mkdir -p /root/.cache/pip/
+RUN mkdir -p /root/.cache/torch/checkpoints/ && \
+    mkdir -p /root/.cache/pip/
 
 # workspace
 RUN mkdir -p /workspace
