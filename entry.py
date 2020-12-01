@@ -4,8 +4,8 @@ import torch
 
 
 def entry():
-    # print(torch.cuda.is_available())
-    print(torch.__version__)
+    print('cuda available:', torch.cuda.is_available())
+    print('torch version:', torch.__version__)
 
 
 if __name__ == '__main__':
