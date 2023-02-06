@@ -2,7 +2,7 @@
 # reference: https://github.com/jehyunlee/docker/blob/master/00_base/kr/Dockerfile
 
 # from
-FROM pytorch/pytorch:1.10.0-cuda11.3-cudnn8-runtime
+FROM pytorch/pytorch:1.13.1-cuda11.6-cudnn8-runtime
 LABEL maintainer="Jamie Seol <theeluwin@gmail.com>"
 
 # apt source
